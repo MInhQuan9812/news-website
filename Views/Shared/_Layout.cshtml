@@ -1,0 +1,158 @@
+﻿@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - news24h</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/news24h.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+
+    <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">news24h</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+    </header>
+
+    <div class="container">
+    <main role="main" class="pb-3">
+    @RenderBody()
+    </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2023 - news24h - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    </html>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - news24h</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/news24h.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-red border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">news24h</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="usermanager">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="bg-191 " style="background-color:black">
+
+        <div class="container">
+            <div class="pt-50 pb-20 pos-relative color">
+                <div class="abs-tblr pt-50 z--1 text-center">
+                    @*<div class="h-80 pos-relative"><img class="opacty-1 h-100 w-auto" src="~/Content/web/images/map.png" alt=""></div>*@
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            @*                            <h5 class="color-primary mb-20"><b>FACEBOOK</b></h5>
+                            *@@*                            <div class="fb-page" data-href="https://www.facebook.com/daivietcophong/" data-tabs="timeline" data-width="" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/daivietcophong/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/daivietcophong/">Đại Việt Cổ Phong - 大越古風 - VietnamAncient</a></blockquote></div>
+                            *@
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+
+
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            <h5 class="text-white mb-20"><b>ĐỀ XUẤT CAO</b></h5>
+                            @{
+                                var cnt = 2;
+                            }
+                            @*@foreach (var i in data.GetHighRatedPost())
+                                {
+
+                                <div class="mb-20">
+                                <a class="color-white" href="/bai-viet/@i.slug"><b>@i.post_title</b></a>
+                                <h6 class="mt-10">@String.Format("{0:dd/MM/yyyy}", i.create_date)</h6>
+                                </div>
+                                if (cnt % 2 == 0)
+                                {
+                                <div class="brdr-ash-1 opacty-2 mr-30 mb-2 mt-2"></div>
+                                }
+                                cnt++;
+                                }*@
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+                    <div class="col-sm-4">
+                        <div class="mb-30">
+                            <a href="#"><img style="width:100px;height:70px" src="https://i1-vnexpress.vnecdn.net/2023/06/19/Einstein-1687171529-4189-1687172219.jpg?w=380&h=228&q=100&dpr=1&fit=crop&s=r12FjkdcSsk-iqU1tsdFXg"></a>
+
+                            <p class="color-ash">
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa fa-heart" aria-hidden="true"></i> by Nhóm 16
+
+                            </p>
+                        </div><!-- mb-30 -->
+                    </div><!-- col-md-4 -->
+
+
+                </div><!-- row -->
+            </div><!-- ptb-50 -->
+
+            <div class="brdr-ash-1 opacty-2"></div>
+
+            <div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
+            </div>
+        </div>
+    </footer>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

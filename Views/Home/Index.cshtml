@@ -1,0 +1,62 @@
+﻿@model IEnumerable<news24h.Models.Post>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <!-- Start top-post Area -->
+        @*@Html.Partial("_HotPost")*@
+        News24h
+        <!-- End top-post Area -->
+    </div>
+    <div class="col-12">
+        <section>
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="p-title ml-md-1"><b>BÀI VIẾT GẦN ĐÂY</b></h4>
+                        @foreach (var item in Model)
+                        {
+                            <div class="link row oflow-hidden pos-relative mb-md-2 mb-1 dplay-block ml-md-1">
+
+                                <div class="col-md-4 col-12 pl-md-0 pb-sm-2" style="height:auto">
+                                    <a href="">
+                                        <img style="width: 100%;"
+                                         src="@item.ImageUrl" alt="@item.PostTitle"
+                                         @*onerror="this.onerror=null;this.src='/Content/web/images/top-post1.jpg';" *@ />
+                                    </a>
+                                </div>
+
+                                <div class="col-md-8 col-12 pt-sm-2 pt-md-0">
+                                    <div class="min-h-100x">
+                                        <h5> <a class="font-weight-bold">@item.PostTitle</a></h5>
+                                        <p>@(item.PostContent.Length >= 150 ? item.PostContent.Substring(0, 150) : item.PostContent + "..")</p>
+
+                                        <p>
+                                            CommentCount: @item.CommentCount
+                                        </p>
+
+
+                                        <ul>
+                                            <li class="latest"><span class="fa fa-calendar mr-1" style="color:#777777"></span>@String.Format("{0:dd-MM-yyyy}", item.CreateAt)</li>
+                                            <li class="latest"><span class="fa fa-tags mr-1" style="color:#777777"></span>@item.PostTopic</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <!-- container -->
+
+                    <div class="col-md-4">
+                        <!-- Phổ biến -->
+                        @*@Html.Partial("_PopularPost")*@
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
