@@ -12,9 +12,9 @@ namespace news24h.Repository
             _context=context;
         }
 
-        public void AddUser(User user)
+        public User AddUser(User user)
         {
-            _context.Users.Add(user);
+           return _context.Users.Add(user).Entity;
         }
 
         public void DeleteUser(User user)

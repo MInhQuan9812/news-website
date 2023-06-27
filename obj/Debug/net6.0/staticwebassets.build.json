@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XzeTJKSLyt6j2Y4hdd2DIommkTja7scyVR4lFKvURus=",
+  "Hash": "Kb6Q+581Bv5KzlLaAxmlC6omJJhczGb6Lh/76AjVMYc=",
   "Source": "news24h",
   "BasePath": "_content/news24h",
   "Mode": "Default",
@@ -1819,6 +1819,23 @@
       "OriginalItemSpec": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\news24h.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\comment-right-svgrepo-com.svg",
+      "SourceId": "news24h",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\",
+      "BasePath": "_content/news24h",
+      "RelativePath": "comment-right-svgrepo-com.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\comment-right-svgrepo-com.svg"
+    },
+    {
       "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\css\\site.css",
       "SourceId": "news24h",
       "SourceType": "Discovered",
@@ -2412,6 +2429,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\lib\\bootstrap\\dist\\css\\custom.css",
+      "SourceId": "news24h",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\",
+      "BasePath": "_content/news24h",
+      "RelativePath": "lib/bootstrap/dist/css/custom.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\custom.css"
     },
     {
       "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",

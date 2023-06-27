@@ -58,42 +58,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - news24h</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/custom.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/news24h.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
-        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-red border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">news24h</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="usermanager">Admin</a>
-                        </li>
-                    </ul>
+        <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
+            <div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;" class="container">
+                <div style="display:flex;flex-direction:row;align-items:center">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">News24h</a>
+                    <form action=/search method=get>
+                        <input type="text" placeholder="Nhập nội dung tìm kiếm" />
+                    </form>
                 </div>
+
+                <div>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <a class="nav-item">@Html.ActionLink("Login", "login", "user", null, new { @class = "nav-link" })</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <button type="button" class="btn dropdown-toggle  dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="usermanager">Admin</a>
+                                    </li>
+                                }
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="info">Thông tin chung</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="userinfor">Tin đã lưu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="userinfor">Tin đã xem</a>
+                                </li>
+                                <li class="nav-item">@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link" })</li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+
             </div>
         </div>
     </header>
 
-    <div class="container body-content">
+    <div class="container body-content" style="height:100vh">
         @RenderBody()
     </div>
     <footer class="bg-191 " style="background-color:black">
 
         <div class="container">
             <div class="pt-50 pb-20 pos-relative color">
+
                 <div class="abs-tblr pt-50 z--1 text-center">
                     @*<div class="h-80 pos-relative"><img class="opacty-1 h-100 w-auto" src="~/Content/web/images/map.png" alt=""></div>*@
                 </div>
+
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="mb-30">
@@ -147,6 +179,9 @@
             </div>
         </div>
     </footer>
+
+
+
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

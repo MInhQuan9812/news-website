@@ -1,0 +1,29 @@
+﻿@model news24h.Models.User
+@{
+    ViewData["Title"] = "Trang cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="container row flex-row flex-nowrap">
+            <aside class="col-3">LeftSide</aside>
+            <div class="col-6 row flex-column" >
+                <h3 style="margin-bottom: 30px;">Thông tin tài khoản</h3>
+                <div class="row">
+                    <p class="col-3">Fullname: </p>
+                    <span class="col-9" style="text-align: end;">@Model.Fullname</span>
+                </div>
+                    <div class="row">
+                    <p class="col-3">Username: </p>
+                    <span class="col-9" style="text-align: end;">@Model.Username</span>
+                </div>
+                     <div class="row">
+                    <p class="col-3">Password: </p>
+                    <span class="col-9" style="text-align: end;">@Model.Password</span>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</div>

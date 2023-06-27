@@ -21,7 +21,7 @@ namespace news24h.Models
         public string? Fullname { get; set; }
 
 
-        public string? Role { get; set; }
+        public string? Role { get; set; } = "cust";
 
 
         public virtual IEnumerable<Post>? Posts

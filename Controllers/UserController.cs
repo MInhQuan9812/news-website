@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using news24h.Models;
+using news24h.Repository;
 using System.Security.Claims;
 
 namespace news24h.Controllers
@@ -13,22 +14,24 @@ namespace news24h.Controllers
         private readonly News24hContext _context;
         public const string SessionKeyName = "Username";
         public const string SessionKeyPass = "Pass";
-
+        private Worker _worker;
         public UserController(News24hContext context)
         {
             _context = context;
+            _worker = new Worker(_context);
         }
 
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult UserManager()
         {
             return View(_context.Users.ToList());
         }
 
-        public ActionResult Login()
+        public async Task<ActionResult> LogOut()
         {
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -37,7 +40,7 @@ namespace news24h.Controllers
         {
             if (ModelState.IsValid)
             {
-                var account = _context.Users.FirstOrDefault(x => x.Username.Equals(user.Username) && x.Password.Equals(user.Password));
+                var account = _context.Users.FirstOrDefault(x => x.Username.Equals(user.Username) && x.Password.Equals(CommonData.CommonFunction.GetHashString(user.Password)));
                 if (account != null)
                 {
                     var claims = new List<Claim>
@@ -55,30 +58,74 @@ namespace news24h.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                      authProperties);
-                     return RedirectToAction("UserManager", "User");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return View();
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(include : "Id,Username,Role,Password,Fullname")] User user)
+        public IActionResult Info()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Update(user);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            string username = User.Identity.Name;
+            User user = _context.Users.Where(x => x.Username == username).FirstOrDefault();
             return View(user);
         }
 
+        //public IActionResult`
 
-        public ActionResult Logout()
+        [HttpPost]
+        public async Task<ActionResult> SignUp([Bind(include: "Username, Password, Fullname")] User user)
         {
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {
+                var account = _context
+                    .Users
+                    .FirstOrDefault(x => x.Username.Equals(user.Username) && x.Password.Equals(user.Password));
+
+                if (account != null)
+                {
+                    throw new Exception("This account is already created.");
+                }
+
+                User nUser = new User
+                {
+                    Username = user.Username,
+                    Fullname = user.Fullname,
+                    Password = CommonData.CommonFunction.GetHashString(user.Password),
+                    Role = user.Role
+                };
+
+                account = _worker.userRepository.AddUser(nUser);
+                
+                var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, account.Username),
+                        new Claim(ClaimTypes.Role, account.Role),
+                    };
+
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties { };
+
+                await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                 authProperties);
+                _worker.userRepository.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult SignUp()
+        {
+            return View();
         }
     }
 }
