@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Kb6Q+581Bv5KzlLaAxmlC6omJJhczGb6Lh/76AjVMYc=",
+  "Hash": "I769TYVYmfdtZnJfR65LCv/Fa3+EQy/mzMGi/aEr+TU=",
   "Source": "news24h",
   "BasePath": "_content/news24h",
   "Mode": "Default",
@@ -1887,6 +1887,23 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
+      "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\lib\\bootstrap\\dist\\css\\admin.css",
+      "SourceId": "news24h",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\",
+      "BasePath": "_content/news24h",
+      "RelativePath": "lib/bootstrap/dist/css/admin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\admin.css"
+    },
+    {
       "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "news24h",
       "SourceType": "Discovered",
@@ -2871,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\logo.svg",
+      "SourceId": "news24h",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MinhQuan\\source\\repos\\news24h\\wwwroot\\",
+      "BasePath": "_content/news24h",
+      "RelativePath": "logo.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logo.svg"
     }
   ]
 }

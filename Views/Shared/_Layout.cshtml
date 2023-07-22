@@ -1,58 +1,8 @@
-﻿@*<!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - news24h</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/news24h.styles.css" asp-append-version="true" />
-    </head>
-    <body>
-
-    <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">news24h</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </li>
-    </ul>
-    </div>
-    </div>
-    </nav>
-    </header>
-
-    <div class="container">
-    <main role="main" class="pb-3">
-    @RenderBody()
-    </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-    <div class="container">
-    &copy; 2023 - news24h - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    </body>
-    </html>*@
+﻿@using news24h.ViewComponents
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -62,13 +12,18 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/news24h.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=Poppins:wght@200;300;500;600;700;800;900&family=Roboto:wght@100&display=swap"
+          rel="stylesheet" />
 </head>
-<body>
-    <header>
+
+<body style="background-color:white; min-height: 100vh;overflow-x: hidden;overflow-y: scroll;display:block">
+    <header style="display:block">
         <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
             <div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;" class="container">
                 <div style="display:flex;flex-direction:row;align-items:center">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">News24h</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/logo.svg" /></a>
                     <form action=/search method=get>
                         <input type="text" placeholder="Nhập nội dung tìm kiếm" />
                     </form>
@@ -91,20 +46,21 @@
                                 @if (User.IsInRole("admin"))
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="usermanager">Admin</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="admin" asp-action="index">Admin</a>
                                     </li>
                                 }
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="info">Thông tin chung</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="Profile">Thông tin chung</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="userinfor">Tin đã lưu</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="SavedNews">Tin đã lưu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="userinfor">Tin đã xem</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="WatchedNews">Tin đã xem</a>
                                 </li>
-                                <li class="nav-item">@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link" })</li>
+
+                                <li class="nav-item">@Html.ActionLink("Đăng xuất", "Logout", "User", null, new { @class = "nav-link",@style="color:var(--primary-color)" })</li>
                             </ul>
                         </div>
                     }
@@ -114,68 +70,74 @@
         </div>
     </header>
 
-    <div class="container body-content" style="height:100vh">
+
+    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
+        @await Component.InvokeAsync(typeof(TopicPartial))
+    </div>
+
+
+    <div class="container body-content">
         @RenderBody()
     </div>
-    <footer class="bg-191 " style="background-color:black">
 
-        <div class="container">
-            <div class="pt-50 pb-20 pos-relative color">
 
-                <div class="abs-tblr pt-50 z--1 text-center">
-                    @*<div class="h-80 pos-relative"><img class="opacty-1 h-100 w-auto" src="~/Content/web/images/map.png" alt=""></div>*@
+    <footer style="border-top: 2px solid #E5E5E5;box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);border-bottom: 1px solid #e5e5e5;">
+        <div class="" style="z-index: 1;display:block;">
+            <div style="display:flex;flex-direction:row;justify-content:space-between;padding:30px" class="container ">
+                <div class="noi-dung about ">
+                    <h2 style="color: darkred;">Về Chúng Tôi</h2>
+                    <p>Biết nói gì đây...</p>
+                    <ul class="social-icon">
+                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                        <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                        <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                    </ul>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="mb-30">
-                            @*                            <h5 class="color-primary mb-20"><b>FACEBOOK</b></h5>
-                            *@@*                            <div class="fb-page" data-href="https://www.facebook.com/daivietcophong/" data-tabs="timeline" data-width="" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/daivietcophong/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/daivietcophong/">Đại Việt Cổ Phong - 大越古風 - VietnamAncient</a></blockquote></div>
-                            *@
-                        </div><!-- mb-30 -->
-                    </div><!-- col-md-4 -->
+                <div class="noi-dung links ">
+                    <h2 style="color: darkred;">Đường Dẫn</h2>
+                    <ul>
+                        <li><a href="/Home">Trang Chủ</a></li>
+                        <li><a href="/Home/about">Về Chúng Tôi</a></li>
+                        <li><a href="#">Thông Tin Liên Lạc</a></li>
+                        <li><a href="#">Dịch Vụ</a></li>
+                        <li><a href="#">Điều Kiện Chính Sách</a></li>
+                    </ul>
+                </div>
 
-
-                    <div class="col-sm-4">
-                        <div class="mb-30">
-                            <h5 class="text-white mb-20"><b>ĐỀ XUẤT CAO</b></h5>
-                            @{
-                                var cnt = 2;
-                            }
-                            @*@foreach (var i in data.GetHighRatedPost())
-                                {
-
-                                <div class="mb-20">
-                                <a class="color-white" href="/bai-viet/@i.slug"><b>@i.post_title</b></a>
-                                <h6 class="mt-10">@String.Format("{0:dd/MM/yyyy}", i.create_date)</h6>
-                                </div>
-                                if (cnt % 2 == 0)
-                                {
-                                <div class="brdr-ash-1 opacty-2 mr-30 mb-2 mt-2"></div>
-                                }
-                                cnt++;
-                                }*@
-                        </div><!-- mb-30 -->
-                    </div><!-- col-md-4 -->
-                    <div class="col-sm-4">
-                        <div class="mb-30">
-                            <a href="#"><img style="width:100px;height:70px" src="https://i1-vnexpress.vnecdn.net/2023/06/19/Einstein-1687171529-4189-1687172219.jpg?w=380&h=228&q=100&dpr=1&fit=crop&s=r12FjkdcSsk-iqU1tsdFXg"></a>
-
-                            <p class="color-ash">
-                                Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa fa-heart" aria-hidden="true"></i> by Nhóm 16
-
+                <div class="noi-dung contact ">
+                    <h2 style="color: darkred;">Thông Tin Liên Hệ</h2>
+                    <ul class="info">
+                        <li>
+                            <span><i class="fa fa-map-marker"></i></span>
+                            <span>
+                                Đường Số 1<br />
+                                Quận 1, Thành Phố Hồ Chí Minh<br />
+                                Việt Nam
+                            </span>
+                        </li>
+                        <li>
+                            <span><i class="fa fa-phone"></i></span>
+                            <p>
+                                <a href="#">+84 123 456 789</a>
+                                <br />
+                                <a href="#">+84 987 654 321</a>
                             </p>
-                        </div><!-- mb-30 -->
-                    </div><!-- col-md-4 -->
+                        </li>
+                        <li>
+                            <span><i class="fa fa-envelope"></i></span>
+                            <p><a href="#">diachiemail@gmail.com</a></p>
+                        </li>
+                        <li>
+                            <form class="form">
+                                <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+                                <button type="button" class="btn btn--primary  uppercase">Gửi</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
 
-
-                </div><!-- row -->
-            </div><!-- ptb-50 -->
-
-            <div class="brdr-ash-1 opacty-2"></div>
-
-            <div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
             </div>
         </div>
     </footer>
@@ -189,5 +151,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
 

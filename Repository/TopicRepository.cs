@@ -17,18 +17,18 @@ namespace news24h.Repository
             _context.Topics.Add(topic);
         }
 
-        public IQueryable<Topic> AllPost()
+        public IQueryable<Topic> AllTopic()
         {
             IQueryable<Topic> query = _context.Topics.AsQueryable();
             return query;
         }
 
-        public void DeletePost(Topic topic)
+        public void DeleteTopic(Topic topic)
         {
             _context.Topics.Remove(topic);
         }
 
-        public void UpdatePost(Topic topic)
+        public void UpdateTopic(Topic topic)
         {
             _context.Entry(topic).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }

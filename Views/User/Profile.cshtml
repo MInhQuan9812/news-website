@@ -1,0 +1,30 @@
+﻿@model news24h.Models.User
+@{
+    ViewData["Title"] = "Trang cá nhân";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="col-6 row flex-column">
+    <h2 style="margin-bottom: 30px;font-weight:bold">Thông tin tài khoản</h2>
+    <div class="row" style="border-bottom:1px solid #e5e5e5;padding:10px;align-items:center">
+        <p class="col-3" style="font-size:1.1rem; font-weight:400">Avatar: </p>
+        <span class="col-9" style="text-align: end;">
+            <img style="width:36px;height:36px;border-radius:18px;" src="https://i1-kinhdoanh.vnecdn.net/2023/06/19/Hoang-Van-Cuong-to-jpeg-7766-1687172342.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=8AN7ap7W5-cEqH2JfMHVkQ" />
+        </span>
+    </div>
+
+    <div class="row" style="border-bottom:1px solid #e5e5e5;padding:10px;align-items:center" ">
+        <p class="col-3" style="font-size:1.1rem; font-weight:400">Họ tên: </p>
+        <span class="col-9" style="text-align: end;    color: #9f9f9f;">@Model.Fullname</span>
+    </div>
+
+    <div class="row" style="border-bottom:1px solid #e5e5e5;padding:10px;align-items:center" ">
+        <p class="col-3" style="font-size:1.1rem; font-weight:400">Tên người dùng: </p>
+        <span class="col-9" style="text-align: end;    color: #9f9f9f;">@Model.Username</span>
+    </div>
+    
+    <div class="row" style="border-bottom:1px solid #e5e5e5;padding:10px;align-items:center" ">
+        <p class="col-3" style="font-size:1.1rem; font-weight:400">Mật khẩu: </p>
+        <span class="col-9" style="display:flex;text-align: end;    color: #9f9f9f;"><input type="password" value="@(Model.Password.Length>=10?Model.Password.Substring(0,10):Model.Password+"..")" style="border:none;outline:none" id="password" /><input</span>
+    </div>
+</div>

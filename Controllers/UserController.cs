@@ -15,6 +15,7 @@ namespace news24h.Controllers
         public const string SessionKeyName = "Username";
         public const string SessionKeyPass = "Pass";
         private Worker _worker;
+
         public UserController(News24hContext context)
         {
             _context = context;
@@ -64,7 +65,7 @@ namespace news24h.Controllers
             return View();
         }
 
-        public IActionResult Info()
+        public IActionResult Profile()
         {
             string username = User.Identity.Name;
             User user = _context.Users.Where(x => x.Username == username).FirstOrDefault();
@@ -96,7 +97,7 @@ namespace news24h.Controllers
                 };
 
                 account = _worker.userRepository.AddUser(nUser);
-                
+
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, account.Username),
@@ -127,5 +128,16 @@ namespace news24h.Controllers
         {
             return View();
         }
+
+        public ActionResult WatchedNews()
+        {
+            return View();
+        }
+
+        public ActionResult SavedNews()
+        {
+            return View();
+        }
+
     }
 }
