@@ -31,6 +31,11 @@ namespace news24h.Repository
         {
             return _context.Users.Find(id);
         }
+        public User FindByUsername(string user)
+        {
+            User u=_context.Users.Where(x=>x.Username==user).FirstOrDefault();
+            return u;
+        }
 
         public void SaveChanges()
         {

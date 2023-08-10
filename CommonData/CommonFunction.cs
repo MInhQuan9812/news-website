@@ -1,4 +1,6 @@
 ﻿namespace news24h.CommonData;
+
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -18,6 +20,11 @@ public class CommonFunction
             sb.Append(b.ToString("X2"));
 
         return sb.ToString();
+    }
+
+    internal static string? GetTeaserFromContent(object post_content, int v)
+    {
+        throw new NotImplementedException();
     }
 }
 

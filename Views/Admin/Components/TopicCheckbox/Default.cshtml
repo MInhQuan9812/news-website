@@ -1,0 +1,22 @@
+﻿@model IEnumerable<news24h.Models.Topic>
+
+@foreach (var item in Model)
+{
+    string title = @item.TopicName;
+    <div class="col-md-3 form-check abc-checkbox abc-checkbox-primary" style="display:flex;flex-direction:row">
+        <div class="form-check ">
+            <label class="form-check-label" for="@item.TopicId" asp-validation-for="@item.TopicId"></label>
+            <input class="form-check-input" name="ids" type="checkbox" value="@item.TopicId" id="@item.TopicId">
+            @*<input type="checkbox" asp-for="@Model[i].IsChecked" />*@
+            <input type="hidden" asp-for="@item.TopicId" />
+        </div>
+
+        <div>
+            @Html.DisplayFor(modelItem=>@item.TopicName)
+            <input type="hidden" asp-for="@item.TopicName" />
+        </div>
+
+
+    </div>
+
+}

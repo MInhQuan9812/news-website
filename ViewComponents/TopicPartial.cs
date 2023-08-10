@@ -5,7 +5,7 @@ using news24h.Repository;
 namespace news24h.ViewComponents
 {
     [ViewComponent(Name = "TopicPartial")]
-    public class TopicPartial:ViewComponent
+    public class TopicPartial : ViewComponent
     {
         private readonly News24hContext _context;
         private Worker _worker;

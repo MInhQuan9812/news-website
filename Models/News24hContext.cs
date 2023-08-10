@@ -33,6 +33,10 @@ namespace news24h.Models
                 .HasOne(post => post.Creator)
                 .WithMany(user => user.Posts)
                 .HasForeignKey(post => post.CreatorId);
+
+            //modelBuilder.Entity<Post>()
+            //    .HasMany(post => post.PostTopics)
+            //    .WithOne(topic => topic.Post);
         }
 
         private void ConfigureUserModel(ModelBuilder modelBuilder)
@@ -41,7 +45,7 @@ namespace news24h.Models
                 .ToTable(nameof(User))
                 .HasKey(x => x.Id);
         }
-
+        
         private void ConfigurePostTopicModel(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PostTopic>()

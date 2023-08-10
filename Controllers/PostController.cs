@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using news24h.Models;
 using news24h.Repository;
+using System.Net;
 
 namespace news24h.Controllers
 {
@@ -20,9 +21,6 @@ namespace news24h.Controllers
             return View();
         }
 
-        public IActionResult Detail()
-        {
-            return View();
-        }
+
     }
 }

@@ -14,28 +14,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
-<body>
+<body style="min-height:100vh">
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
-                <i class="fas fa-user-secret me-2"></i>ADMIN
+                <i class="fas fa-user-secret me-2 "></i>ADMIN
             </div>
 
-            <div class="list-group list-group-flush my-3 primary-text">
-                <a href="#" class="list-group-item d-flex my-2  list-group-item-action bg-transparent second-text fw-bold">
+            <div class="list-group list-group-flush my-3 primary-text accordion" id="accordionPanelsStayOpenExample">
+                <div class="list-group-item d-flex my-2  list-group-item-action bg-transparent second-text fw-bold">
                     <i class="fas fa-tachometer-alt mx-2"></i>Dashboard
-                </a>
-                <a href="#" class="list-group-item d-flex my-2 list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="nav-icon fa fa-user-circle mx-2"></i>Người dùng
-                </a>
-                <a href="#" class="list-group-item d-flex my-2 list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="nav-icon fa fa-edit mx-2"></i>Bài viết
-                </a>
-                <a href="#" class="list-group-item  d-flex my-2 list-group-item-action bg-transparent text-danger fw-bold">
+                </div>
+
+                <div class="accordion-item border-0">
+                    <div class="accordion-header list-group-item d-flex my-2 border-top-0 border-end-0 list-group-item-action bg-transparent second-text fw-bold" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button p-0 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <i class="nav-icon fa fa-user-circle mx-2 accordion-header" id="panelsStayOpen-headingOne"></i>Người dùng
+                        </button>
+                    </div>
+
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <a href="/admin/userManager" class="list-group-item d-flex my-2  border-top-0 border-end-0 border-start-0  list-group-item-action bg-transparent second-text fw-bold">
+                                <i class="fas fa-tachometer-alt mx-2"></i>Quản lý người dùng
+                            </a>
+
+                            <a class="list-group-item d-flex my-2    border-top-0 border-end-0  border-start-0 list-group-item-action bg-transparent second-text fw-bold">
+                                <i class="fas fa-tachometer-alt mx-2"></i>Tạo người dùng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-0">
+                    <div class="accordion-header list-group-item d-flex my-2 border-top-0 border-end-0 list-group-item-action bg-transparent second-text fw-bold" id="panelsStayOpen-headingTwo">
+                        <button class="accordion-button p-0 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <i class="nav-icon fa fa-user-circle mx-2 accordion-header" id="panelsStayOpen-headingTwo"></i>Bài viết
+                        </button>
+                    </div>
+
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div class="accordion-body">
+                            <a href="/admin/postManager"class="list-group-item d-flex my-2  border-top-0 border-end-0 border-start-0  list-group-item-action bg-transparent second-text fw-bold">
+                                <i class="fas fa-tachometer-alt mx-2"></i>Quản lý bài viết
+                            </a>
+
+                            <a href="/admin/createPost" class="list-group-item d-flex my-2    border-top-0 border-end-0  border-start-0 list-group-item-action bg-transparent second-text fw-bold">
+                                <i class="fas fa-tachometer-alt mx-2"></i>Thêm bài viết
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group-item  d-flex my-2 list-group-item-action bg-transparent text-danger fw-bold">
                     <i class="fas fa-power-off mx-2"></i>Đăng xuất
-                </a>
+                </div>
             </div>
+
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
@@ -84,6 +120,7 @@
                     </div>
                 </div>
             </nav>
+
 
             <div class="container-fluid px-4">
                 <div>

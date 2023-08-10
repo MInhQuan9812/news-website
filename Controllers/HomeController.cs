@@ -18,13 +18,28 @@ namespace news24h.Controllers
         }
         
 
-        public IActionResult Index()
+        public IActionResult Index(string topic,string title)
         {
-           
+            
+            if (topic != null)
+            {
+                return View(_context.Posts.Where(d=>d.PostTopic.Contains(topic)).ToList());
+            }
+            else if(title != null)
+            {
+                return View(_context.Posts.Where(d => d.PostTitle.Contains(title)).ToList());
+            }
             return View(_worker.postRepository.AllPost());
         }
 
-        public IActionResult Privacy()
+
+        public IActionResult DetailPost(int id)
+        {
+            Post post =_worker.postRepository.FindById(id);
+            return View(post);
+
+        }
+        public ActionResult Privacy()
         {
             return View();
         }

@@ -1,0 +1,93 @@
+﻿@using news24h.ViewComponents
+
+@model news24h.ViewModel.createPostViewModel
+@{
+    ViewBag.Title = "Tạo Bài Viết Mới";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="margin-top:15px;padding-top:15px;">
+
+    @using (Html.BeginForm("createPost", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h4 class="control-label col-md-6">Chọn chủ đề bài viết</h4>
+                <div class="col-md-10">
+                    <div class="row">
+                        @*@await Component.InvokeAsync(typeof(TopicCheckbox))*@
+                        @for (int i = 0; i < Model.PostTopic.Count; i++)
+                        {
+                            
+                            string title = Model.PostTopic[i].Text;
+                        <div class="col-md-3 form-check abc-checkbox abc-checkbox-primary">
+                            @Html.HiddenFor(model => model.PostTopic[i].Value)
+                            @Html.CheckBoxFor(model => model.PostTopic[i].Selected, new { @class = "form-check-input" })
+                            @Html.LabelFor(model => model.PostTopic[i].Selected, title, new { @class = "form-check-label" })
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h4 class="control-label col-md-4">Tiêu đề bài viết</h4>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PostTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h4 class="control-label col-md-4">Ảnh đại diện bài viết</h4>
+                <div class="col-md-10">
+                    <input type="file" id="ImageUrl" name="ImageUrl" class="form-control-file" />
+                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10" style="text-align:center">
+                    <img class="img-responsive" style="max-width:60%;max-height:300px;text-align:center" id="avtpreview" src="~/No_Image_Available.jpg" alt="Ảnh đại diện" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="control-label col-md-4">Nội dung bài viết</h3>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.PostContent, new { @class = "form-control", required = "true" })
+                    @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            @section scripts{
+        <script src="~/lib/ckeditor/ckeditor.js"></script>
+        <script src="~/lib/ckeditor/adapters/jquery.js"></script>
+
+        <script>
+             var editor = CKEDITOR.replace('PostContent',
+                {
+                    //filebrowserImageBrowseUrl: '/Content/ckfinder/ckfinder.html?type=Images',
+                    width: '100%',
+                    height: '450',
+
+                }
+            );
+            //$("#rtxBlogContent").ckeditor();
+        </script>
+        }
+            @*<textarea id="rtxBlogContent"></textarea>*@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tạo" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div style="margin-bottom:50px"></div>
