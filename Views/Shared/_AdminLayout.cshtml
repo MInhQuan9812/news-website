@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
-<body style="min-height:100vh">
+<body style="min-height:100vh;background-color:#fcfaf6">
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
@@ -101,7 +101,7 @@
                                 @if (User.IsInRole("admin"))
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="admin" asp-action="index">Admin</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="user" asp-action="admin">Admin</a>
                                     </li>
                                 }
 

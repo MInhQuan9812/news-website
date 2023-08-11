@@ -20,6 +20,7 @@ namespace news24h.ViewComponents
         {
             var list = _worker.topicRepository.AllTopic();
             return View(list);
+
         }
     }
 }

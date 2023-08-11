@@ -1,4 +1,5 @@
-﻿@model news24h.Models.Post
+﻿@using news24h.ViewComponents
+@model news24h.Models.Post
 
 @{
     ViewData["Title"] = "Chi tiết";
@@ -31,14 +32,14 @@
                 <div class="container bread ml-0 pl-0 p-0">
                     <i class="mr-2 fa fa-home"></i><a class="mt-10 breaditem" href="/">Trang chủ</a><i class="mr-2 ml-2 fa fa-chevron-right"></i>
                     @*                       <a class="mt-10 breaditem" href="/danh-muc/@Model.tagLists.FirstOrDefault().slug">@Model.tagLists.FirstOrDefault().name </a><i class="mr-2 ml-2 fa fa-chevron-right"></i>*@
-                    <a class="mt-10 breadlink" style="color:aqua" href="/@Model.PostTopic">@Model.PostTopic</a>
+                    <a class="mt-10 breadlink" style="color:#B42652" href="/@Model.PostTopic">@Model.PostTopic</a>
                 </div>
             </section>
             <h2 id="title_post">@Model.PostTitle</h2>
             <div id="author_time">
                 <i class="fa fa-clock-o mr-1"></i>
                 @String.Format("{0:dd/MM/yyyy}", Model.CreateAt)  -
-                <i class="fa fa-eye mr-1"></i> @Model.ViewCount views
+                <i class="fa fa-eye mr-1"></i> @Model.ViewCount Lượt xem
 
             </div>
             <hr />
@@ -46,7 +47,7 @@
                 <div id="teaser-post">
                     @*@Model.post_teaser*@
                 </div>
-                <div class="imgpost">
+                <div class="imgpost" style="background-color:#fcfaf6">
                     <div class="imagepost pb-3" style="max-width:80%;margin-left: auto;margin-right: auto;">
                         <img src="~/Upload/images/@Model.ImageUrl" onerror="this.onerror=null;this.style.display = 'none';" />
                     </div>
@@ -77,8 +78,7 @@
             @*@Html.Partial("_RelatedPost", data.GetRelatedPost(Model.tagLists.FirstOrDefault().id))*@
         </div>
         <div class="col-md-4">
-            @*                @Html.Partial("_PopularPost", data.GetPopularPost())
-            *@
+            @await Component.InvokeAsync(typeof(MostCountPost))
         </div>
     </div>
 </section>

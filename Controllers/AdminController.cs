@@ -47,7 +47,7 @@ namespace news24h.Controllers
                 );
             if (ModelState.IsValid)
             {
-                string folder = "post/cover/";
+                string folder = "/post/cover/";
 
                 if (model.PostTitle == null)
                 {
@@ -78,6 +78,7 @@ namespace news24h.Controllers
             }
             return View(model);
         }
+
 
         [Authorize(Roles = "admin")]
         public ActionResult UserManager()

@@ -17,27 +17,24 @@ namespace news24h.Controllers
             _worker = new Worker(_context);
         }
         
-
         public IActionResult Index(string topic,string title)
         {
             
             if (topic != null)
             {
-                return View(_context.Posts.Where(d=>d.PostTopic.Contains(topic)).ToList());
+                return View(_context.Posts.Where(d=>d.PostTopic.Contains(topic)).OrderByDescending(d=>d.CreateAt).ToList());
             }
             else if(title != null)
             {
-                return View(_context.Posts.Where(d => d.PostTitle.Contains(title)).ToList());
+                return View(_context.Posts.Where(d => d.PostTitle.Contains(title)).OrderByDescending(d => d.CreateAt).ToList());
             }
-            return View(_worker.postRepository.AllPost());
+            return View(_worker.postRepository.AllPost().OrderByDescending(d=>d.CreateAt).ToList());
         }
-
 
         public IActionResult DetailPost(int id)
         {
             Post post =_worker.postRepository.FindById(id);
             return View(post);
-
         }
         public ActionResult Privacy()
         {

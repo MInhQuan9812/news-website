@@ -18,30 +18,34 @@
           rel="stylesheet" />
 </head>
 
-<body style="background-color:white; min-height: 100vh;overflow:unset;">
-    <header style="z-index:999;top:0;width:100%;height:60px;position: sticky;background: #fff;">
+<body style="background-color:#fcfaf6; min-height: 1000vh;overflow:unset;">
+    <header style="z-index:999;top:0;width:100%;height:60px;position: sticky;background: white;">
         <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
             <div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;" class="container">
                 <div style="display:flex;flex-direction:row;align-items:center">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/logo.svg" /></a>
                     <form action="/" method=post>
-                        <input type="text" name="title" placeholder="Nhập nội dung tìm kiếm"  />
-                        <input type="submit" class="btn" id="btnProceed" value="Search" />
+                        <input type="text" name="title" placeholder="Nhập nội dung tìm kiếm" />                      
+                            <input type="submit" class="btn" id="btnProceed" value="Tìm" style="border:1px grey solid; padding:3px;color:#b81f32" />                            
                     </form>
                 </div>
 
                 <div>
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <div>
-                            <a class="nav-item">@Html.ActionLink("Login", "login", "user", null, new { @class = "nav-link" })</a>
+                        <div >
+                            <a class="nav-item">@Html.ActionLink("Đăng nhập", "login", "user", null, new { @class = "nav-link",@style="color:var(--primary-color)" })</a>
                         </div>
                     }
                     else
                     {
                         <div>
                             <button type="button" class="btn dropdown-toggle  dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                @* <i class="fa fa-user-circle-o" aria-hidden="true"></i>*@
+                                <span style="text-align: center;margin-right: 0;font-size: 16px;font-weight: 400;line-height: 25px;margin-top: -1px;width: 24px;height: 24px;">
+                                    <img src="~/s91265816730980433919.png" style="border-radius: 50%;width:25px;height:25px">
+                                    </span>
+
                             </button>
                             <ul class="dropdown-menu">
                                 @if (User.IsInRole("admin"))
@@ -72,12 +76,13 @@
     </header>
 
 
-    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
+    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3" style="color:white">
         @await Component.InvokeAsync(typeof(TopicPartial))
+
     </div>
 
 
-    <div class="container body-content">
+    <div class="container body-content" style="background: #fcfaf6">
         @RenderBody()
     </div>
 

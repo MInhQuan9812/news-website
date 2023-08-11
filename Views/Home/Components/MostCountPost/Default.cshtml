@@ -1,0 +1,38 @@
+﻿@model IEnumerable<news24h.Models.Post>
+
+<div class="pl-20 pl-md-0">
+    <div class="popular-post">
+        <h4 class="p-title"  style="color:#b81f32"><b>Xem nhiều</b></h4>
+        @foreach (var item in Model)
+        {
+            <div class="link row oflow-hidden pos-relative dplay-block  p-3 flex-row" style="border-top: 1px solid #e5e5e5;">
+                <div class="col-md-4 col-12 pl-md-0 pb-sm-2" style="height:auto">
+                    <a href="/bai-viet/@item.Id">
+                        <img style="width: 100%;"
+                         src="/@item.ImageUrl" alt="@item.PostTitle" />
+                    </a>
+                </div>
+
+                <div class="col-md-8 col-12 pt-sm-2 pt-md-0">
+                    <div class="min-h-100x">
+                        <a href="/bai-viet/@item.Id" class="font-weight-bold" style="font-weight:700;font-size:20px;color:black;margin-bottom:10px;">@item.PostTitle</a>
+
+
+
+                        <div style="display:flex;flex-direction:row;align-items:center;">
+                           @* <img src="~/comment-right-svgrepo-com.svg" style="width:20px;height:20px" />*@
+                           <i class="fa fa-eye mr-1"></i> @item.ViewCount lượt xem
+                            @*<p style="color: #4f4f4f;font-size:15px;margin-bottom:0px;margin-left:10px"> @item.ViewCount</p>*@
+
+                        </div>
+                        <ul style="list-style:none">
+                            <li style="color: #4f4f4f;font-size:14px"><span class="fa fa-calendar mr-1"></span>@String.Format("{0:dd-MM-yyyy}", item.CreateAt)</li>
+                            <li style="color: #4f4f4f;font-size:14px"><span class="fa fa-tags mr-1"></span>@item.PostTopic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

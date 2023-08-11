@@ -17,25 +17,28 @@
                         @using (Html.BeginForm("SignUp", "User", FormMethod.Post, new { @class = "form-horizontal" }))
                         {
                             @Html.AntiForgeryToken()
-                            <h4>Use a local account to log in.</h4>
+                            <h4 style="color:var(--primary-color)">Vui lòng đăng kí tài khoản tại đây</h4>
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+                               @* @Html.LabelFor("Tên người dùng", new { @class = "col-md-2 control-label" })*@
+                               <p class="col-md-2 control-label" style="color:var(--primary-color)">Tên đăng nhập</p>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Fullname, new { @class = "col-md-2 control-label" })
+                                @*@Html.LabelFor(m => m.Fullname, new { @class = "col-md-2 control-label" })*@
+                                <p class="col-md-2 control-label" style="color:var(--primary-color)">Họ và tên</p>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Fullname, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
+                                <p class="col-md-2 control-label" style="color:var(--primary-color)">Mật khẩu</p>
                                 <div class="col-md-10">
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
@@ -45,15 +48,15 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="SignUp" class="btn btn-default" />
+                                    <input type="submit" value="Đăng kí" class="btn btn-default" style="color:var(--primary-color)"/>
                                 </div>
                             </div>
                             <p>
-                                @Html.ActionLink("Have an account?", "Login")
+                                @Html.ActionLink("Đã có tài khoản?", "Login")
                             </p>
                             @* Enable this once you have account confirmation enabled for password reset functionality *@
                             <p>
-                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                @Html.ActionLink("Quên mật khẩu?", "ForgotPassword")
                             </p>
                         }
 
